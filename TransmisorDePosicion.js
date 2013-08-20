@@ -17,7 +17,7 @@ TransmisorDePosicion.prototype.onErrorAlObtenerPosicion = function(error){
 };
 
 TransmisorDePosicion.prototype.onPosicionObtenida = function(posicion){
-    portal.enviarMensaje({
+    this.portal.enviarMensaje({
                 tipoDeMensaje: "vortex.commander.posicion",
                 usuario: this.o.usuario,
                 latitud: posicion.coords.latitude,
