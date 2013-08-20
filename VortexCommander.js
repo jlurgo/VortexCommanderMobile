@@ -1,24 +1,8 @@
-var onDeviceReady = function() {
-    var portal =  new NodoPortalBidi();           
+var onDeviceReady = function() {         
     var clienteHTTP = new NodoClienteHTTP('http://router-vortex.herokuapp.com', 100);             
-    portal.conectarCon(clienteHTTP);
-    clienteHTTP.conectarCon(portal);
+    NodoRouter.instancia.conectarBidireccionalmenteCon(clienteHTTP);
     
-    watch_id = navigator.geolocation.watchPosition(
-        // Success
-        function(position){
-            portal.enviarMensaje({
-                tipoDeMensaje: "vortex.commander.posicion",
-                latitud: position.coords.latitude,
-                longitud: position.coords.longitude 
-            });
-        },
-        // Error
-        function(error){
-            console.log(error);
-        },
-        // Settings
-        { timeout: 3000, enableHighAccuracy: true });
+    var transmisor = new TransmisorDePosicion({ usuario: "charles"});
 };
 
 $(document).ready(function() {  
