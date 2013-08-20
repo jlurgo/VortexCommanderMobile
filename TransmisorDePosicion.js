@@ -17,6 +17,7 @@ TransmisorDePosicion.prototype.onErrorAlObtenerPosicion = function(error){
 };
 
 TransmisorDePosicion.prototype.onPosicionObtenida = function(posicion){
+    var _this = this;
     this.portal.enviarMensaje({
                 tipoDeMensaje: "vortex.commander.posicion",
                 usuario: this.o.usuario,
@@ -24,12 +25,14 @@ TransmisorDePosicion.prototype.onPosicionObtenida = function(posicion){
                 longitud: posicion.coords.longitude
             });
     console.log("Obtenida posicion: ", posicion);
-    setTimeout(this.obtenerPosicion.bind(this), 100);
+    setTimeout(function(){_this.obtenerPosicion();}
+               , 100);
 };
 
 TransmisorDePosicion.prototype.obtenerPosicion = function(){
+    var _this = this;
     navigator.geolocation.getCurrentPosition(
-        this.onPosicionObtenida.bind(this),
-        this.onErrorAlObtenerPosicion.bind(this),
+        function(pos){_this.onPosicionObtenida(pos);},
+        function(error){_this.onErrorAlObtenerPosicion(error);},
         this.opcionesGPS);
 };
