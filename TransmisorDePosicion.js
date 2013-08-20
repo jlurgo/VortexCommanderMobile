@@ -26,7 +26,7 @@ TransmisorDePosicion.prototype.onPosicionObtenida = function(posicion){
             });
     console.log("Obtenida posicion: ", posicion);
     setTimeout(function(){_this.obtenerPosicion();}
-               , 100);
+               , 1000);
 };
 
 TransmisorDePosicion.prototype.obtenerPosicion = function(){
