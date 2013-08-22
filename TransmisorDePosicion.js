@@ -13,7 +13,9 @@ TransmisorDePosicion.prototype.start = function(){
 
 TransmisorDePosicion.prototype.onErrorAlObtenerPosicion = function(error){
     console.log(error);
-    this.obtenerPosicion();
+    var _this = this;
+    setTimeout(function(){_this.obtenerPosicion();}
+               , 1000);
 };
 
 TransmisorDePosicion.prototype.onPosicionObtenida = function(posicion){
