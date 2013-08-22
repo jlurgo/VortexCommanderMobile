@@ -9,14 +9,14 @@
 	</head>
 	
 	<body>	
-        <div data-role="page" id="pantalla_login">
+        <div data-role="page" id="pantalla_login" data-theme="a">
             <div data-role="header">
                 <h1>Explorador Reportándose</h1>
             </div>
         
             <div data-role="content" >	
                 <input id="txt_nombre_usuario" type="text"/>
-                <p><a id="btn_log_in" href="#pantalla_explorador" data-role="button" data-transition="flip">Presente!</a></p>	
+                <input id="btn_log_in" type="button" data-role="button" data-transition="fade" value="Presente!"/>	
             </div>
         </div>
         
@@ -26,8 +26,6 @@
             </div>
         
             <div id="contenido" data-role="content" data-theme="a">	
-                <div id="div_mapa">
-                </div>
             </div>
         </div>  
         
