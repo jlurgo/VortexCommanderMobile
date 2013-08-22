@@ -9,18 +9,36 @@
 	</head>
 	
 	<body>	
-        <div data-role="header">
-            <h1>Commander</h1>
+        <div data-role="page" id="pantalla_login">
+            <div data-role="header">
+                <h1>Explorador Reportándose</h1>
+            </div>
+        
+            <div data-role="content" >	
+                <input id="txt_nombre_usuario" type="text"/>
+                <p><a id="btn_log_in" href="#pantalla_explorador" data-role="button" data-transition="flip">Presente!</a></p>	
+            </div>
         </div>
-        <div id="panel_principal" data-role="content">
-            
-        </div>	
+        
+        <div data-role="page" id="pantalla_explorador" data-theme="a">    
+            <div data-role="header">
+                <h1 id="encabezado"></h1>
+            </div>
+        
+            <div id="contenido" data-role="content" data-theme="a">	
+                <div id="div_mapa">
+                </div>
+            </div>
+        </div>  
+        
+<!--
         <div id="plantillas">
             <div id="plantilla_login" title="Iniciar Sesión">
                 <input id="txt_nombre_usuario" type="text"/>
                 <input id="btn_log_in" type="button" value="Presente!" data-theme="a"/>
             </div>  
         </div>  
+-->
     </body>    
     <script type="text/javascript" src="jquery-1.10.2.min.js"></script> 
     <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
@@ -38,10 +56,12 @@
     <script type="text/javascript" src="VortexJS/NodoPortalConCanal.js"></script> 
     <script type="text/javascript" src="VortexJS/NodoPortalBidiMonoFiltroConCanal.js"></script> 
     <script type="text/javascript" src="VortexJS/NodoConectorSocket.js"></script>
-    <script type="text/javascript" src="VistaLogin.js"></script> 
+    <script type="text/javascript" src="PantallaLogin.js"></script> 
+    <script type="text/javascript" src="PantallaExplorador.js"></script> 
     <script type="text/javascript" src="Usuario.js"></script> 
     <script type="text/javascript" src="VortexCommander.js"></script> 
     <script type="text/javascript" src="TransmisorDePosicion.js"></script> 
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCTwSyuSvqrNmXA32DrIrHf1VMBx02o0HE&sensor=false"></script>
 <!--    <script type="text/javascript" src="phonegap.js"></script>-->
 </html>
 

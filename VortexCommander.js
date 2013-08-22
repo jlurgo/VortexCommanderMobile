@@ -4,13 +4,12 @@ var onDeviceReady = function() {
     
     var panel_principal = $("#panel_principal");
     var _this = this;
-    var vista_login = new VistaLogin({
+    var login = new PantallaLogin({
         callback_usuario: function(un_usuario){
-            var transmisor = new TransmisorDePosicion({ usuario: un_usuario});
+            //var transmisor = new TransmisorDePosicion({ usuario: un_usuario});
+            var pantalla_explorador = new PantallaExplorador({ usuario: un_usuario});
         }
     });
-    
-    vista_login.dibujarEn(panel_principal);
 };
 
 $(document).ready(function() {  
