@@ -6,7 +6,6 @@ var onDeviceReady = function() {
     var _this = this;
     var login = new PantallaLogin({
         callback_usuario: function(un_usuario){
-            //var transmisor = new TransmisorDePosicion({ usuario: un_usuario});
             var pantalla_explorador = new PantallaExplorador({ usuario: un_usuario});
         }
     });

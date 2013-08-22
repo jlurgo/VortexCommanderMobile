@@ -19,4 +19,6 @@ PantallaExplorador.prototype.start = function(){
     };
     this.mapa = new google.maps.Map(div_mapa[0], mapOptions);
     google.maps.event.trigger(this.mapa, 'resize');
+    
+    this.transmisor = new TransmisorDePosicion({ usuario: this.o.usuario});
 };
