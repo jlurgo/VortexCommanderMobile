@@ -20,7 +20,7 @@ TransmisorDePosicion.prototype.onPosicionObtenida = function(posicion){
     var _this = this;
     this.portal.enviarMensaje({
                 tipoDeMensaje: "vortex.commander.posicion",
-                usuario: this.o.usuario,
+                usuario: this.o.usuario.nombre,
                 latitud: posicion.coords.latitude,
                 longitud: posicion.coords.longitude
             });
