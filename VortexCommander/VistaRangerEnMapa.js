@@ -39,15 +39,15 @@ VistaRangerEnMapa.prototype.start = function(){
     
     this.portal.pedirMensajes(  new FiltroAND([new FiltroXClaveValor("tipoDeMensaje", "vortex.commander.posicion"),
                                                new FiltroXClaveValor("ranger", this.o.nombre)]),
-                                this.posicionRecibida.bind(this));
+                                function(mensaje){_this.posicionRecibida(mensaje);});
     
     this.portal.pedirMensajes(  new FiltroAND([new FiltroXClaveValor("tipoDeMensaje", "vortex.commander.confirmaciondearribo"),
                                                new FiltroXClaveValor("ranger", this.o.nombre)]),
-                                this.confirmacionDeArriboRecibida.bind(this));
+                                function(mensaje){_this.confirmacionDeArriboRecibida(mensaje);});
     
     this.portal.pedirMensajes(  new FiltroAND([new FiltroXClaveValor("tipoDeMensaje", "vortex.commander.goingTo"),
                                                new FiltroXClaveValor("ranger", this.o.nombre)]),
-                                this.eventoGoingToRecibido.bind(this));
+                                function(mensaje){_this.eventoGoingToRecibido(mensaje);});
     
     this.ajustarFlechaDestino = this.ajustarFlechaDestinoCuandoNoHayDestino;
 };

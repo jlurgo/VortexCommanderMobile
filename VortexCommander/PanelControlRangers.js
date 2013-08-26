@@ -22,8 +22,9 @@ PanelControlRangers.prototype.start = function(){
     
     this.rangers = {};
     
+    var _this = this;
     this.portal.pedirMensajes(  new FiltroXClaveValor("tipoDeMensaje", "vortex.commander.posicion"),
-                                this.posicionRecibida.bind(this));
+                                function(mensaje){_this.posicionRecibida(mensaje);});
     var _this = this;
     google.maps.event.addListener(this.mapa, 'click', function(event) {
         _this.rangerSeleccionado.goTo(event.latLng);
