@@ -12,7 +12,7 @@ PanelControlRangers.prototype.start = function(){
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     this.mapa = new google.maps.Map(this.ui.find("#div_mapa")[0], mapOptions);
-             
+    var _this = this;
     this.ui.find("#div_mapa").show(function(){
         google.maps.event.trigger(_this.mapa, "resize");        
     });
