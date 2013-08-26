@@ -2,11 +2,14 @@ var onDeviceReady = function() {
     var clienteHTTP = new NodoClienteHTTP('http://router-vortex.herokuapp.com', 1000);             
     NodoRouter.instancia.conectarBidireccionalmenteCon(clienteHTTP);
     
-    var panel_principal = $("#panel_principal");
+    var pantalla_explorador = $("#pantalla_panel_control_rangers");
     var _this = this;
     var login = new PantallaLogin({
         callback_usuario: function(un_usuario){
-            var pantalla_explorador = new PantallaExplorador({ usuario: un_usuario});
+            var transmisor = new TransmisorDePosicion({ usuario: un_usuario});
+            var panel_control = new PanelControlRangers();        
+            panel_control.dibujarEn(pantalla_explorador.find("#contenido"));          
+            $.mobile.changePage (pantalla_explorador);
         }
     });
 };

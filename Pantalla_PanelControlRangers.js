@@ -4,8 +4,6 @@ var PantallaExplorador = function(opt){
 };
 
 PantallaExplorador.prototype.start = function(){
-    this.ui = $("#pantalla_explorador");    
-    $.mobile.changePage (this.ui);
     
     this.encabezado = this.ui.find("#encabezado");
     this.encabezado.text(this.o.usuario.nombre);
