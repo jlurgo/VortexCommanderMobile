@@ -28,9 +28,16 @@ VistaRangerEnMapa.prototype.start = function(){
         content: $("#plantilla_label_ranger").clone().text(this.o.nombre)[0]
     });
     
-    google.maps.event.addListener(this.marcador_posicion, 'click', function(event) {
-        _this.o.onClick(_this, event);
+    var mouse_down = false;
+    google.maps.event.addListener(this.marcador_posicion, 'mousedown', function(event) {
+        mouse_down = true;
     });
+    
+    google.maps.event.addListener(this.marcador_posicion, 'mouseup', function(event) {
+        if(mouse_down) _this.o.onClick(_this, event);  
+         mouse_down = false;
+    });
+    
     this.label_nombre.open(this.o.mapa,this.marcador_posicion);
     
     setTimeout(function(){
