@@ -19,7 +19,7 @@ Ranger.prototype.goToRecibido = function(mensaje){
     this.destino = new google.maps.LatLng(mensaje.latitudDestino, mensaje.longitudDestino);
     this.portal.enviarMensaje({
             tipoDeMensaje: "vortex.commander.goingTo",
-            ranger: this.nombre,
+            ranger: this.o.nombre,
             latitud: this.destino.lat(),
             longitud: this.destino.lng()
         });
