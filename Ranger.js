@@ -7,10 +7,10 @@ Ranger.prototype.start = function(){
     this.portal =  new NodoPortalBidi();         
     NodoRouter.instancia.conectarBidireccionalmenteCon(this.portal);
     this.opcionesGPS = {enableHighAccuracy: true };
-    
+    var _this = this;
     this.portal.pedirMensajes( new FiltroAND([new FiltroXClaveValor("tipoDeMensaje", "vortex.commander.goto"),
                                                new FiltroXClaveValor("ranger", this.o.nombre)]),
-                                this.goToRecibido.bind(this));
+                                function(mensaje){_this.goToRecibido(mensaje);});
     
     this.obtenerPosicion();
 };
