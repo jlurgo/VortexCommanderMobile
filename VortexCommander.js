@@ -6,7 +6,7 @@ var onDeviceReady = function() {
     var _this = this;
     var login = new PantallaLogin({
         callback_usuario: function(un_usuario){
-            var transmisor = new TransmisorDePosicion({ usuario: un_usuario});
+            var ranger = new Ranger({ nombre: un_usuario.nombre});
             var panel_control = new PanelControlRangers();        
             panel_control.dibujarEn(pantalla_explorador.find("#contenido"));          
             $.mobile.changePage (pantalla_explorador);
