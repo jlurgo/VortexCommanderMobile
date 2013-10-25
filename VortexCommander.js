@@ -9,7 +9,7 @@ var onDeviceReady = function() {
             var ranger = new Ranger({ nombre: un_usuario.nombre});
             var panel_control = new PanelControlRangers();        
             panel_control.dibujarEn(pantalla_explorador.find("#contenido"));          
-            $.mobile.changePage (pantalla_explorador);
+            $.mobile.changePage (pantalla_explorador, { transition: "flip"});
         }
     });
 };
