@@ -8,7 +8,7 @@ VistaDerroteroRaider.prototype.start = function(){
     this.derrotero = [];
     
     this.linea_derrotero = new paper.Path();
-    this.linea_derrotero.strokeWidth = 10;
+    this.linea_derrotero.strokeWidth = 5;
     this.linea_derrotero.strokeColor = 'orange';
     this.linea_derrotero.opacity = 0.7;
     this.linea_derrotero.strokeJoin = 'round';
@@ -28,6 +28,7 @@ VistaDerroteroRaider.prototype.start = function(){
                               function(){
                                   _this.ajustarDibujo();
                               });
+    this.visible = false;
 };
 
 VistaDerroteroRaider.prototype.posicionRecibida = function(posicion){
@@ -47,11 +48,14 @@ VistaDerroteroRaider.prototype.ajustarDibujo_cuando_esta_invisible = function(){
     
 };
 
-VistaDerroteroRaider.prototype.mostrar = function(){
+VistaDerroteroRaider.prototype.mostrar = function () {
     this.ajustarDibujo = this.ajustarDibujo_cuando_esta_visible;
+    this.ajustarDibujo();
+    this.visible = true;
 };
 
-VistaDerroteroRaider.prototype.ocultar = function(){
+VistaDerroteroRaider.prototype.ocultar = function () {
     this.linea_derrotero.segments = [];
     this.ajustarDibujo = this.ajustarDibujo_cuando_esta_invisible;
+    this.visible = false;
 };

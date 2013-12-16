@@ -1,0 +1,21 @@
+html, 
+body, 
+#contenido,
+#panel_principal,
+#pantalla_panel_control_rangers{
+    height:100%;
+}
+
+/*make the page element 100% height*/
+#pantalla_panel_control_rangers {
+    height : 100%;
+}
+
+/*set the content to be full-width and height except it doesn't overlap the header or footer*/
+#pantalla_panel_control_rangers .ui-content {
+    position : absolute;
+    top      : 0px;
+    right    : 0;
+    bottom   : 0px;
+    left     : 0;
+}

@@ -21,8 +21,7 @@ VistaRangerEnMapa.prototype.start = function(){
                                   });
     this.marcador_posicion = new paper.Path.Circle(new paper.Point(-30, -30), 10);
     this.marcador_posicion.fillColor = 'red';
-    this.marcador_posicion.onClick = function(){
-        _this.o.mapa.panTo(_this.posicionActual);
+    this.marcador_posicion.onClick = function(){        
         _this.o.onClick(_this);
     };
     this.marcador_posicion.onMouseEnter = function(event) {
@@ -32,17 +31,24 @@ VistaRangerEnMapa.prototype.start = function(){
     this.marcador_posicion.onMouseLeave = function(event) {
         _this.marcador_posicion.fillColor = 'red';
     }
-    this.actualizarMarcadorPosicion();
-    
     this.vista_destino = new VistaDestinoRaider({
         nombreRaider: this.o.nombre,
-        mapa: this.o.mapa    
+        mapa: this.o.mapa,
+        icono_raider: this.marcador_posicion    
     });
     
     this.vista_derrotero = new VistaDerroteroRaider({
         nombreRaider: this.o.nombre,
-        mapa: this.o.mapa    
+        mapa: this.o.mapa
     });
+
+    this.txt_nombre_raider = new paper.PointText(50, 50);
+    this.txt_nombre_raider.fillColor = 'black';
+    this.txt_nombre_raider.content = this.o.nombre;
+    this.txt_nombre_raider.visible = true;
+    
+    this.actualizarMarcadorPosicion();
+    
 };
 
 VistaRangerEnMapa.prototype.posicionRecibida = function(posicion){
@@ -70,17 +76,33 @@ VistaRangerEnMapa.prototype.actualizarMarcadorPosicion = function(){
     if(intersecciones.length>0){    
         var int = intersecciones[0].point;
         this.marcador_posicion.position = new paper.Point(int.x, int.y);
+        
+        if(this.marcador_posicion.position.x == paper.project.view.size.width - 10){ //contra el borde derecho
+            this.txt_nombre_raider.justification = 'right';
+            this.txt_nombre_raider.point = this.marcador_posicion.position.add([-12,5]);
+        }
+        if(this.marcador_posicion.position.x == 10){ //contra el borde izquierdo
+            this.txt_nombre_raider.justification = 'left';
+            this.txt_nombre_raider.point = this.marcador_posicion.position.add([12,5]);
+        }        
+        if(this.marcador_posicion.position.y == paper.project.view.size.height - 10){ //contra el borde inferior
+            this.txt_nombre_raider.justification = 'center';
+            this.txt_nombre_raider.point = this.marcador_posicion.position.add([0,-13]);
+        }
+        if(this.marcador_posicion.position.y == 10){ //contra el borde superior
+            this.txt_nombre_raider.justification = 'center';
+            this.txt_nombre_raider.point = this.marcador_posicion.position.add([0,23]);
+        }
+        
     }else{
         this.marcador_posicion.position = posRanger;
+        this.txt_nombre_raider.justification = 'center';
+        this.txt_nombre_raider.point = this.marcador_posicion.position.add([0,23]); 
     }
     rect.remove();
-    recta_corte.remove();        
+    recta_corte.remove();     
 };
     
-VistaRangerEnMapa.prototype.visibleEnElMapa = function(){
-    return false;
-};
-
 VistaRangerEnMapa.prototype.goTo = function(destino){
     this.portal.enviarMensaje({ tipoDeMensaje: "vortex.commander.goto",
                                 ranger: this.o.nombre,
@@ -99,7 +121,8 @@ VistaRangerEnMapa.prototype.desSeleccionar = function(){
     this.marcador_posicion.strokeWidth = 0;
 };
 
-VistaRangerEnMapa.prototype.seguirConPaneo = function(){
+VistaRangerEnMapa.prototype.seguirConPaneo = function () {
+    this.o.mapa.panTo(this.posicionActual);
     this.panear_al_recibir_posicion = true;
 };
 
@@ -107,12 +130,16 @@ VistaRangerEnMapa.prototype.yaNoSeguirConPaneo = function(){
     this.panear_al_recibir_posicion = false;
 };
 
-VistaRangerEnMapa.prototype.dejarRastro = function(){
+VistaRangerEnMapa.prototype.dejarRastro = function () {
     this.vista_derrotero.mostrar();
 };
 
 VistaRangerEnMapa.prototype.yaNoDejarRastro = function(){
     this.vista_derrotero.ocultar();
+};
+
+VistaRangerEnMapa.prototype.dejandoRastro = function () {
+    return this.vista_derrotero.visible;
 };
 
 var vista_ranger_null = {

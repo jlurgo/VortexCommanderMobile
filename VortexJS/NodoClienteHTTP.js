@@ -3,7 +3,8 @@ Vortex by Vortex Group is licensed under a Creative Commons Reconocimiento 3.0 U
 To view a copy of this licence, visit: http://creativecommons.org/licenses/by/3.0/
 Project URL: https://sourceforge.net/p/vortexnet
 */
-var NodoClienteHTTP = function (url, intervalo_polling) {
+var NodoClienteHTTP = function (url, intervalo_polling, verbose) {
+    this.verbose = verbose;
     var idSesion;
     var intervaloPolling = (intervalo_polling === undefined)? 1500 : intervalo_polling;;
     var intervaloPedidoIdSesion = 5000;

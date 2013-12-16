@@ -22,7 +22,7 @@ VistaDestinoRaider.prototype.start = function(){
     
     this.ajustarFlecha = this.ajustarFlecha_cuando_no_hay_destino;
     this.cuerpo_flecha = new paper.Path();
-    this.cuerpo_flecha.strokeWidth = 10;
+    this.cuerpo_flecha.strokeWidth = 5;
     this.cuerpo_flecha.opacity = 0.5;    
     this.cuerpo_flecha.strokeColor = 'red';
     
@@ -58,7 +58,7 @@ VistaDestinoRaider.prototype.ajustarFlecha_cuando_hay_destino = function(){
     var xyOrigenFlecha = this.mapa.getPointFromLatLng(this.posicionActualRaider);
     var xyPuntaFlecha = this.mapa.getPointFromLatLng(this.destinoRaider);
 
-    var versor_destino = xyPuntaFlecha.add(xyOrigenFlecha.multiply(-1)).normalize(25);
+    var versor_destino = xyPuntaFlecha.add(xyOrigenFlecha.multiply(-1)).normalize(10);
     this.punta_flecha.segments =[
         xyPuntaFlecha.add(versor_destino.rotate(155)),
         xyPuntaFlecha,
@@ -69,17 +69,23 @@ VistaDestinoRaider.prototype.ajustarFlecha_cuando_hay_destino = function(){
     linea_corte.segments = [
        xyOrigenFlecha,
        xyPuntaFlecha.add(versor_destino.normalize(2).multiply(-1))
-    ]; 
+    ];
     var intersecciones_con_punta_flecha = this.punta_flecha.getIntersections(linea_corte);
+    var intersecciones_con_icono_raider = this.icono_raider.getIntersections(linea_corte);
     linea_corte.remove();
     
     var xy_fin_cuerpo_flecha = xyOrigenFlecha;
     if(intersecciones_con_punta_flecha.length > 0){
         xy_fin_cuerpo_flecha = intersecciones_con_punta_flecha[0]; 
     };
-    
+
+    var xy_inicio_cuerpo_flecha = xyOrigenFlecha;
+    if (intersecciones_con_icono_raider.length > 0) {
+        xy_inicio_cuerpo_flecha = intersecciones_con_icono_raider[0];
+    };
+
     this.cuerpo_flecha.segments = [
-       xyOrigenFlecha,
+       xy_inicio_cuerpo_flecha,
        xy_fin_cuerpo_flecha
     ];
 };
